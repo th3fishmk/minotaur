@@ -3,7 +3,7 @@
 /** biome-ignore-all lint/correctness/noUnusedVariables: <same thing> */
 import { computed, ref } from 'vue';
 import { visualTest } from '../data/questions';
-import { type ForkLiftType, type FormDState, Models } from '../types';
+import { type FormDState, Models } from '../types';
 
 const form = ref<FormDState>({
     // personal
@@ -17,13 +17,13 @@ const form = ref<FormDState>({
 
     answers: {},
 });
-const selectedModel = ref<ForkLiftType>(undefined);
+// const selectedModel = ref<ForkLiftType>(undefined);
 const handleVisualQ = (questionId: string, value: number) => {
     form.value.answers[questionId] = value;
 };
 
 // Form validation
-const showErrors = ref(false);
+// const showErrors = ref(false);
 
 const answersValidity = computed(() => {
     return visualTest.every(q => {

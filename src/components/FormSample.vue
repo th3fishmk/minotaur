@@ -12,8 +12,8 @@ const form = ref<FormDState>({
     ID: undefined,
     // equipment
     mod: undefined,
-    hours: undefined,
     shortID: undefined,
+    hours: undefined,
 
     answers: {},
 });
@@ -45,29 +45,32 @@ const handleDone = () => {
 </script>
 
 <template>
-    <br>
+    <h1>
+        Check list de equipo de carga
+    </h1>
     <!-- Personal info -->
-    <div class="space-y-4">
-        <div>
-            <label class="block text-sm">Whats your name </label>
-            <br>
+    <div class="form-container-centered">
+        <div class="input-group">
+            <label class="input-label">What's your name</label>
             <input type="text"
                 v-model="form.name"
-                placeholder="Enter your name">
+                placeholder="Enter your name"
+                class="styled-input">
         </div>
-        <div>
-            <label>ID </label>
-            <br>
+
+        <div class="input-group">
+            <label class="input-label">ID</label>
             <input type="number"
                 v-model="form.ID"
+                placeholder="Enter your ID"
+                class="styled-input"
                 required>
         </div>
     </div>
-    <br>
     <!-- Equipment info -->
-    <div>
-        <span>Please select your equipment model</span>
-        <div class="centered">
+    <div class="form-container-centered">
+        <span>Selecciona tu equipo de carga</span>
+        <div class="input-group">
             <div class="option-group">
                 <label class="option-item"
                     v-for="m in Models"
@@ -81,12 +84,23 @@ const handleDone = () => {
                 </label>
             </div>
         </div>
-        <br>
-        <div>
-            <label>Hours</label>
-            <br>
-            <input type="number"
+    </div>
+    <br>
+    <div class="form-container-centered">
+        <div class="input-group">
+            <label>Horómetro</label>
+            <input type="
+            number"
                 v-model="form.hours"
+                placeholder="hours"
+                class="styled-input"
+                required>
+            <label>Número económico</label>
+            <input type="
+            number"
+                v-model="form.shortID"
+                placeholder="eg 1894"
+                class="styled-input"
                 required>
         </div>
     </div>
@@ -178,17 +192,88 @@ const handleDone = () => {
             </div>
         </div>
     </div>
-    <label>
-        <button @click="handleDone"
-            class="done-btn">
-            Done!
-        </button>
-    </label>
+    <div class="form-container-centered">
+        <div class="input-group">
+            <label>
+                <button @click="handleDone"
+                    class="done-btn">
+                    Done!
+                </button>
+            </label>
+        </div>
+    </div>
     <br>
     {{ JSON.stringify(form) }}
 </template>
 
 <style scoped>
+/* Centers the entire block of inputs */
+.form-container-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centers items horizontally */
+    width: 100%;
+}
+
+/* Container for each input field */
+.input-group {
+    margin-bottom: 1.25rem;
+    width: 100%;
+    max-width: 320px;
+    /* Keeps them from getting too wide */
+}
+
+/* Crisp, professional label styling */
+.input-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.375rem;
+    text-align: left;
+    /* Keeps the label text left-aligned relative to the box */
+}
+
+/* Modernized input box */
+.styled-input {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.95rem;
+    color: #1f2937;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.styled-input::placeholder {
+    color: #9ca3af;
+}
+
+.styled-input:hover {
+    border-color: #9ca3af;
+}
+
+.styled-input:focus {
+    background-color: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Kill arrows */
+.styled-input::-webkit-outer-spin-button,
+.styled-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.styled-input[type=number] {
+    -moz-appearance: textfield;
+}
+
 h2 {
     margin: 2rem;
 }

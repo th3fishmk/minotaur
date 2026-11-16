@@ -2,15 +2,15 @@ import type { Question } from '../types';
 
 export const visualTest: Question[] = [
     { id: '1', text: 'Leaks', description: 'Some extra info' },
-    { id: 'v2', text: 'Fuel tank', description: '' },
+    { id: '2', text: 'Fuel tank', description: '' },
     {
         id: '3',
-        text: 'battery plug',
+        text: 'Battery plug',
         description: '',
     },
     {
         id: '4',
-        text: 'chains, wires, ',
+        text: 'Chains, wires, ',
         description: '',
     },
     {
@@ -20,7 +20,7 @@ export const visualTest: Question[] = [
     },
     {
         id: '6',
-        text: 'safety barrier',
+        text: 'Safety barrier',
         description: '',
     },
     {
@@ -36,12 +36,12 @@ export const visualTest: Question[] = [
     { id: '9', text: 'Leaks', description: 'Some extra info' },
     {
         id: '10',
-        text: 'battery plug',
+        text: 'Battery plug',
         description: '',
     },
     {
         id: '11',
-        text: 'chains, wires, ',
+        text: 'Chains, wires, ',
         description: '',
     },
     {
@@ -51,7 +51,7 @@ export const visualTest: Question[] = [
     },
     {
         id: '13',
-        text: 'safety barrier',
+        text: 'Safety barrier',
         description: '',
     },
     {

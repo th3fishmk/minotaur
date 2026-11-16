@@ -51,18 +51,18 @@ const handleDone = () => {
     <!-- Personal info -->
     <div class="form-container-centered">
         <div class="input-group">
-            <label class="input-label">What's your name</label>
+            <label class="input-label">Ingresa tu nombre</label>
             <input type="text"
                 v-model="form.name"
-                placeholder="Enter your name"
+                placeholder="Eg John"
                 class="styled-input">
         </div>
 
         <div class="input-group">
-            <label class="input-label">ID</label>
+            <label class="input-label">Numero de asociado</label>
             <input type="number"
                 v-model="form.ID"
-                placeholder="Enter your ID"
+                placeholder="Eg 7275379"
                 class="styled-input"
                 required>
         </div>
@@ -88,18 +88,16 @@ const handleDone = () => {
     <br>
     <div class="form-container-centered">
         <div class="input-group">
-            <label>Horómetro</label>
-            <input type="
-            number"
-                v-model="form.hours"
-                placeholder="hours"
-                class="styled-input"
-                required>
             <label>Número económico</label>
-            <input type="
-            number"
+            <input type="number"
                 v-model="form.shortID"
                 placeholder="eg 1894"
+                class="styled-input"
+                required>
+            <label>Horómetro</label>
+            <input type="number"
+                v-model="form.hours"
+                placeholder="hours"
                 class="styled-input"
                 required>
         </div>
@@ -203,7 +201,27 @@ const handleDone = () => {
         </div>
     </div>
     <br>
-    {{ JSON.stringify(form) }}
+    <!-- {{ JSON.stringify(form) }} -->
+    <div class="qr-placeholder-wrapper">
+        <div class="qr-reserved-box"
+            :class="{ 'has-qr': form }">
+
+            <!-- State 1: Empty placeholder before clicking Done! -->
+            <div v-if=form
+                class="qr-empty-state">
+                <span class="qr-icon">📷</span>
+                <p>The QR code will go here</p>
+            </div>
+
+            <!-- State 2: Your actual QR code component once generated -->
+            <div v-else
+                class="qr-active-state">
+                <!-- Replace this <p> with your QR library component (e.g. <qrcode-vue :value="qrPayloadString" :size="180" />) -->
+                <p class="qr-debug-text">{{ form }}</p>
+            </div>
+
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -450,5 +468,60 @@ h2 {
 .done-btn:disabled {
     background-color: #93c5fd;
     cursor: not-allowed;
+}
+
+/* Centers the QR section below the Done button */
+.qr-placeholder-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* Reserved fixed square so the page height never jumps */
+.qr-reserved-box {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border: 2px dashed #cbd5e1;
+    border-radius: 0.75rem;
+    color: #64748b;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+/* Switches to a solid crisp card when the QR code is generated */
+.qr-reserved-box.has-qr {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.qr-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    user-select: none;
+}
+
+.qr-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.qr-debug-text {
+    font-size: 0.75rem;
+    word-break: break-all;
+    color: #1e293b;
 }
 </style>

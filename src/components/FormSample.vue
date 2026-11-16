@@ -9,7 +9,7 @@ const form = ref<FormDState>({
     // personal
     date: '',
     name: '',
-    ID: 0,
+    ID: undefined,
     // equipment
     mod: undefined,
     hours: undefined,
@@ -65,48 +65,111 @@ const handleVisualQ = (questionId: string, value: number) => {
             <label>Hours</label>
             <br>
             <input type="number"
-                v-model="form.ID"
+                v-model="form.hours"
                 required>
         </div>
     </div>
     <br>
     <!-- Questions -->
-    <span>Check List</span>
-    <div v-for="q in visualTest"
-        :key="q.id">
-        {{ q.text }}
-        <div class="three-state-toggle">
-            <label class="toggle-option">
-                <input type="radio"
-                    :name="q.id"
-                    value="yes"
-                    @click="handleVisualQ(q.id, 0)">
-                <span class="btn check">✓</span>
-            </label>
-            <label class="toggle-option">
-                <input type="radio"
-                    :name="q.id"
-                    value="na"
-                    @click="handleVisualQ(q.id, 1)">
-                <span class="btn na">N/A</span>
-            </label>
-            <label class="toggle-option">
-                <input type="radio"
-                    :name="q.id"
-                    value="no"
-                    @click="handleVisualQ(q.id, 2)">
-                <span class="btn cross">✕</span>
-            </label>
+     <h2>
+         Check list visual
+     </h2>
+    <div  v-for="q in visualTest" :key="q.id">
+        <div class="question-group" v-if="q.eval=='visual'">
+            <div class="question-text">
+                <b>
+                <!-- {{ q.id }}&rpar;  -->
+                {{ q.text }}
+                </b>
+                <small>
+                     {{ q.description }}
+                </small>
+            </div>
+            <div class="centered">
+                <div class="three-state-toggle">
+                    <label class="toggle-option">
+                        <input type="radio"
+                        :name="q.id"
+                        value="yes"
+                        @click="handleVisualQ(q.id, 0)">
+                        <span class="btn check">✓</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio"
+                        :name="q.id"
+                        value="na"
+                        @click="handleVisualQ(q.id, 1)">
+                        <span class="btn na">N/A</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio"
+                        :name="q.id"
+                        value="no"
+                        @click="handleVisualQ(q.id, 2)">
+                        <span class="btn cross">✕</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>
+        Check list operacional
+    </h2>
+    <div  v-for="q in visualTest" :key="q.id">
+        <div class="question-group" v-if="q.eval=='field'">
+            <div class="question-text">
+                <b>
+                <!-- {{ q.id }}&rpar;  -->
+                {{ q.text }}
+                </b>
+                <small>
+                     {{ q.description }}
+                </small>
+            </div>
+            <div class="centered">
+                <div class="three-state-toggle">
+                    <label class="toggle-option">
+                        <input type="radio"
+                        :name="q.id"
+                        value="yes"
+                        @click="handleVisualQ(q.id, 0)">
+                        <span class="btn check">✓</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio"
+                        :name="q.id"
+                        value="na"
+                        @click="handleVisualQ(q.id, 1)">
+                        <span class="btn na">N/A</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio"
+                        :name="q.id"
+                        value="no"
+                        @click="handleVisualQ(q.id, 2)">
+                        <span class="btn cross">✕</span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
     <br>
-    <span>results:</span>
-    <div>
-        <code> {{ JSON.stringify(form) }} </code>
-    </div>
+    {{ JSON.stringify(form) }}
 </template>
 
 <style scoped>
+.question-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 1rem;
+}
+.question-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+}
 .centered {
     display: flex;
     justify-content: center;

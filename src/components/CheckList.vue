@@ -53,7 +53,6 @@ const handleDone = () => {
             Check list de equipo de carga
         </h1>
 
-        <!-- Personal info -->
         <form @submit.prevent="handleDone"
             class="form-container">
             <div class="form-container-centered">
@@ -75,7 +74,6 @@ const handleDone = () => {
                 </div>
             </div>
 
-            <!-- Equipment info -->
             <div class="form-container-centered">
                 <div>
                     <label class="input-label">Selecciona tu equipo de carga</label>
@@ -118,7 +116,6 @@ const handleDone = () => {
             </div>
             <br>
 
-            <!-- Questions: Visual Test -->
             <h2>Check list visual</h2>
             <div v-for="q in visualTest"
                 :key="'visual-' + q.id">
@@ -156,7 +153,6 @@ const handleDone = () => {
                 </div>
             </div>
 
-            <!-- Questions: Field / Operational Test -->
             <h2>Check list operacional</h2>
             <div v-for="q in visualTest"
                 :key="'field-' + q.id">
@@ -194,7 +190,6 @@ const handleDone = () => {
                 </div>
             </div>
 
-            <!-- Submit Button (Fixed invalid wrapping label) -->
             <div class="form-container-centered">
                 <div class="input-group">
                     <button type="submit"

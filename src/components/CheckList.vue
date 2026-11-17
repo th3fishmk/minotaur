@@ -1,6 +1,4 @@
 <script setup lang="ts">
-/** biome-ignore-all lint/correctness/noUnusedImports: too many false positives */
-/** biome-ignore-all lint/correctness/noUnusedVariables: <same thing> */
 import { computed, ref } from 'vue';
 import { visualTest } from '../data/questions';
 import { type FormDState, Models } from '../types';
@@ -54,10 +52,9 @@ const handleDone = () => {
             <label class="input-label">Ingresa tu nombre</label>
             <input type="text"
                 v-model="form.name"
-                placeholder="Eg John"
+                placeholder="E.g. "
                 class="styled-input">
         </div>
-
         <div class="input-group">
             <label class="input-label">Numero de asociado</label>
             <input type="number"
@@ -69,37 +66,42 @@ const handleDone = () => {
     </div>
     <!-- Equipment info -->
     <div class="form-container-centered">
-        <span>Selecciona tu equipo de carga</span>
-        <div class="input-group">
-            <div class="option-group">
-                <label class="option-item"
-                    v-for="m in Models"
-                    :key="m.value">
-                    <input type="radio"
-                        v-model="form.mod"
-                        :value="m.value"
-                        :name="m.value"
-                        required>
-                    <span class="btn">{{ m.label }}</span>
-                </label>
+        <div>
+
+            <label class="input-label">Selecciona tu equipo de carga</label>
+            <div class="input-group">
+                <div class="option-group">
+                    <label class="option-item"
+                        v-for="m in Models"
+                        :key="m.value">
+                        <input type="radio"
+                            v-model="form.mod"
+                            :value="m.value"
+                            :name="m.value"
+                            required>
+                        <span class="btn">{{ m.label }}</span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
     <br>
     <div class="form-container-centered">
         <div class="input-group">
-            <label>Número económico</label>
+            <label class="input-label">Número económico</label>
             <input type="number"
                 v-model="form.shortID"
                 placeholder="eg 1894"
                 class="styled-input"
                 required>
-            <label>Horómetro</label>
-            <input type="number"
-                v-model="form.hours"
-                placeholder="hours"
-                class="styled-input"
-                required>
+            <div class="input-group">
+                <label class="input-label">Horómetro</label>
+                <input type="number"
+                    v-model="form.hours"
+                    placeholder="hours"
+                    class="styled-input"
+                    required>
+            </div>
         </div>
     </div>
     <br>
@@ -292,7 +294,7 @@ const handleDone = () => {
     -moz-appearance: textfield;
 }
 
-h2 {
+h1 h2 {
     margin: 2rem;
 }
 
@@ -468,60 +470,5 @@ h2 {
 .done-btn:disabled {
     background-color: #93c5fd;
     cursor: not-allowed;
-}
-
-/* Centers the QR section below the Done button */
-.qr-placeholder-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    width: 100%;
-}
-
-/* Reserved fixed square so the page height never jumps */
-.qr-reserved-box {
-    width: 220px;
-    height: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1rem;
-    background-color: #f9fafb;
-    border: 2px dashed #cbd5e1;
-    border-radius: 0.75rem;
-    color: #64748b;
-    box-sizing: border-box;
-    transition: all 0.25s ease;
-}
-
-/* Switches to a solid crisp card when the QR code is generated */
-.qr-reserved-box.has-qr {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.qr-empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    user-select: none;
-}
-
-.qr-icon {
-    font-size: 1.5rem;
-    opacity: 0.7;
-}
-
-.qr-debug-text {
-    font-size: 0.75rem;
-    word-break: break-all;
-    color: #1e293b;
 }
 </style>

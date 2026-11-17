@@ -25,7 +25,6 @@
     position: relative;
 }
 
-/* Make the main content have padding at the bottom so it doesn't get hidden behind the fixed bar */
 .main-content {
     display: flex;
     justify-content: center;
@@ -36,7 +35,6 @@
     flex-direction: column;
 }
 
-/* Fixed Bottom Navigation Bar */
 .navbar {
     position: fixed;
     bottom: 0;
@@ -44,13 +42,11 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(8px);
-    /* Gives a sleek modern frosted-glass effect */
     border-top: 1px solid #e5e7eb;
     padding: 0.75rem 1rem;
     display: flex;
     justify-content: center;
     z-index: 1000;
-    /* Ensures it stays on top of all page content */
     box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
@@ -74,7 +70,6 @@
     color: #1f2937;
 }
 
-/* Active route styling */
 .nav-btn.router-link-active {
     background-color: #2563eb;
     color: #ffffff;

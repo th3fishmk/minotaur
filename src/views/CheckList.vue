@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/** biome-ignore-all lint/correctness/noUnusedVariables: <false positive> */
 import { toPng } from 'html-to-image';
 import { toDataURL } from 'qrcode';
 import { computed, nextTick, onMounted, ref } from 'vue';
@@ -56,7 +55,7 @@ onMounted(() => {
 });
 
 const showErrors = ref(false);
-const isDateInvalid = computed(() => showErrors.value && !form.value.date);
+// const isDateInvalid = computed(() => showErrors.value && !form.value.date);
 const isNameInvalid = computed(() => showErrors.value && !form.value.name.trim());
 const isIdInvalid = computed(() => showErrors.value && form.value.ID === undefined);
 const isModInvalid = computed(() => showErrors.value && !form.value.mod);

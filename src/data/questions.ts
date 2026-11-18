@@ -1,6 +1,6 @@
 import type { Question } from '../types';
 
-export const visualTest: Question[] = [
+export const allQuestions: Question[] = [
     {
         id: '1',
         text: 'Fugas de aceite',

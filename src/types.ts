@@ -1,6 +1,6 @@
-export type ForkLiftType = 'PE' | 'RC' | 'RM' | 'CC' | 'BR' | 'SP' | undefined;
+export type color = 'PE' | 'RC' | 'RM' | 'CC' | 'BR' | 'SP' | undefined;
 
-export const Models: { value: ForkLiftType; label: string }[] = [
+export const Models: { value: color; label: string }[] = [
     { value: 'PE', label: 'Patineta eléctrica (PE)' },
     { value: 'RC', label: 'Montacargas RC' },
     { value: 'RM', label: 'Montacargas RM' },
@@ -19,10 +19,12 @@ export interface Question {
 }
 
 export interface FormDState {
+    // personal
     date: string;
     name: string;
     ID: number | undefined;
-    mod: ForkLiftType;
+    // 
+    mod: color;
     shortID: number | undefined;
     hours: number | undefined;
     answers: Record<string, number>;

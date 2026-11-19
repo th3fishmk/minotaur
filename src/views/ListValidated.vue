@@ -4,45 +4,40 @@
             <h2>Historial de verificados</h2>
             <p class="subtitle">Los códigos que verifiques aparecerán aquí</p>
         </div>
-
-        <!-- Empty State -->
         <div v-if="verifiedRecords.length === 0"
             class="empty-state">
             <p>Aun no se a verificado ningún código</p>
         </div>
-
-        <!-- Sorted History Table / List -->
         <div v-else
             class="table-container">
             <table class="history-table">
                 <thead>
                     <tr>
+                        <th class="actions-col">Actions</th>
                         <th>Date / Timestamp</th>
                         <th>Asociado</th>
                         <th>Numero</th>
                         <th>Model</th>
                         <th>Equipo</th>
-                        <th class="actions-col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(record, index) in sortedHistory"
                         :key="index">
+                        <td class="actions-col">
+                            <button @click="openModal(record)"
+                                class="view-btn">View</button>
+                        </td>
                         <td>{{ formatFancyDate(record.date) }}</td>
                         <td class="font-bold">{{ record.name }}</td>
                         <td class="font-mono">{{ record.ID }}</td>
                         <td><span class="badge-mod">{{ record.mod }}</span></td>
                         <td class="font-mono">{{ record.shortID }}</td>
-                        <td class="actions-col">
-                            <button @click="openModal(record)"
-                                class="view-btn">View</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- 🟢 DETAILED REPORT MODAL -->
         <Teleport to="body">
             <div v-if="showModal && activeRecord"
                 class="modal-backdrop"
@@ -55,7 +50,6 @@
                             class="close-x-btn"
                             aria-label="Close modal">&times;</button>
                     </div>
-
                     <div class="report-meta-grid">
                         <div class="meta-item">
                             <span class="label">Nombre del asociado</span>
@@ -100,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <code>{{ activeRecord }}</code>
                     <div class="modal-actions">
                         <button @click="recreateQR"
                             class="qr-action-btn">Re-create QR Code</button>
@@ -115,10 +109,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { allQuestions } from '../data/questions';
 import type { FormDState } from '../types';
-import { useRouter, useRoute } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter();
@@ -396,15 +390,17 @@ const recreateQR = () => {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    right: 0;
+    bottom: 64px;
+    /* 👈 Match your bottom navbar's exact height (e.g. 60px–70px) */
     background-color: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 900;
     padding: 1rem;
+    box-sizing: border-box;
 }
 
 .modal-card {
@@ -412,10 +408,12 @@ const recreateQR = () => {
     width: 100%;
     max-width: 600px;
     border-radius: 12px;
-    padding: 1.75rem;
+    padding: 1.5rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    max-height: 90vh;
+    max-height: 100%;
+    /* 👈 Fits inside the remaining space above the navbar */
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .modal-header {

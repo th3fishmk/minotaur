@@ -130,7 +130,7 @@ const handleDone = async () => {
 
     try {
         qrCodeURL.value = await toDataURL(appUrlWithPayload.value, {
-            errorCorrectionLevel: 'M',
+            errorCorrectionLevel: 'L',
             margin: 2,
             width: 380,
             color: {
@@ -152,7 +152,6 @@ const handleDone = async () => {
     const existingHistory = existingHistoryJson ? JSON.parse(existingHistoryJson) : [];
     const updatedHistory = [form.value, ...existingHistory];
     localStorage.setItem('history_inspections', JSON.stringify(updatedHistory));
-
     console.log('Inspection record successfully saved to history!');
 
 };
@@ -362,11 +361,11 @@ const downloadCardImage = async () => {
         </form>
     </div>
 
-    <div class="data-preview-container">
+    <!-- <div class="data-preview-container">
         <h4> Raw Payload Preview (Array Format)</h4>
         <pre class="preview-code"><code>{{ previewPayload }}</code></pre>
         <pre class="preview-code"><code>{{ appUrlWithPayload }}</code></pre>
-    </div>
+    </div> -->
 
     <div v-if="qrCodeURL"
         ref="cardRef"

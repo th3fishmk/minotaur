@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/minotaur/dev-sw.js?dev-sw', { scope: '/minotaur/', type: 'classic' })
